@@ -1,5 +1,7 @@
-#Problem 1
-#This problem concerns swimming records. 
+'''
+Problem 1
+This problem concerns swimming records. 
+'''
 
 import pandas as pd
 
@@ -22,8 +24,11 @@ def process_frame(d):
     d['Time']=d['Time'].apply(process_time)
     d['Date']=pd.to_datetime(d['Date'])
     return d
-    
-#1. Create a wr data frame that has a ’Gender’ column, and put all the men’s and women’s records, differentiated by event and gender, in one data frame.
+
+'''    
+1. Create a wr data frame that has a ’Gender’ column, and put all the men’s and women’s records, 
+differentiated by event and gender, in one data frame.
+'''
 
 mf = pd.read_csv("100m-WR-free-M.csv",header=None,names=["Time","Type","Name","Nationality","Date","Place","Meet","Location","Ref"])
 mf = process_frame(mf)
@@ -69,8 +74,10 @@ wr = pd.concat((mf[['Time','Date','Gender','Event']],mb[['Time','Date','Gender',
                 mbr[['Time','Date','Gender','Event']],mfl[['Time','Date','Gender','Event']],
                wf[['Time','Date','Gender','Event']],wb[['Time','Date','Gender','Event']],
                 wbr[['Time','Date','Gender','Event']],wfl[['Time','Date','Gender','Event']]),axis=0, ignore_index=True)
-                
-#2. Add the 200m individual medley (IM) data to the the data frame, for both men and women. This data can be found on Wikipedia.
+
+'''
+2. Add the 200m individual medley (IM) data to the the data frame, for both men and women. This data can be found on Wikipedia.
+'''
 
 mim = pd.read_html("https://en.wikipedia.org/wiki/World_record_progression_200_metres_individual_medley",header=0)[0]
 mim.rename(columns = {'TIME':'Time'}, inplace=True)
@@ -120,7 +127,14 @@ axes[1].title.set_text("Women's Record-Beating Margins by Event")
 axes[1].set_xlabel('Year')
 axes[1].set_ylabel('Margin (seconds)')
 
-#4. For each event, plot the male-to-female ratio of world records. This will be a little tricky, as the records for the men’s free, for example, were not set at the same time, nor do they have the same cardinality, as the women’s free. Do this in an intelligent way. One way might be to do it by year — a potential difficulty is that a world record might not have been set in a given year—figure out how to deal with that. Another way might be to plot a data point of the existing men’s wr divided by the existing women’s wr whenever a new record occurred in either category— but how you figure that out might be slightly challenging.
+'''
+4. For each event, plot the male-to-female ratio of world records. This will be a little tricky, 
+as the records for the men’s free, for example, were not set at the same time, nor do they have the same cardinality, 
+as the women’s free. Do this in an intelligent way. One way might be to do it by year — a potential difficulty 
+is that a world record might not have been set in a given year—figure out how to deal with that. 
+Another way might be to plot a data point of the existing men’s wr divided by the existing women’s wr whenever 
+a new record occurred in either category— but how you figure that out might be slightly challenging.
+'''
 
 ratio = pd.DataFrame(columns=['Event','Year','Ratio'])
 ind = 0

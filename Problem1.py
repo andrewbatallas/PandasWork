@@ -95,8 +95,13 @@ wim['Gender']=pd.Series('female',index=wim.index)
 
 wr = pd.concat((wr[['Time','Date','Event','Gender']],mim[['Time','Date','Event','Gender']],
                 wim[['Time','Date','Event','Gender']]),axis=0,ignore_index=True)
-                
-#3. Add a column to the data frame that indicates the margin by which the new world record broke the old world record, for each entry. For the first entry in each event-gender category, enter NaN. Plot the margins by event in two plots, one for men and one for women. Make sure that there’s a legend that indicates which line corresponds to event, and that there’s a title indicating which margins are for men and which are for women.
+
+'''
+#3. Add a column to the data frame that indicates the margin by which the new world record broke the old world record, 
+for each entry. For the first entry in each event-gender category, enter NaN. Plot the margins by event in two plots, 
+one for men and one for women. Make sure that there’s a legend that indicates which line corresponds to event, 
+and that there’s a title indicating which margins are for men and which are for women.
+'''
 
 import numpy as np
 
